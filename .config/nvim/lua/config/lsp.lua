@@ -1,7 +1,7 @@
 vim.diagnostic.config({
 	virtual_text = true,
 	underline = true,
-	serverity_sort = true,
+	severity_sort = true,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "🚨",

@@ -7,6 +7,11 @@ require("config.lazy")
 require("config.completion")
 require("config.lsp")
 
-vim.lsp.enable('ts_ls')
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('prismals')
+local lsp_configs = vim.fn.stdpath("config") .. "/lsp"
+for _, file in ipairs(vim.fn.glob(lsp_configs .. "/*.lua", true, true)) do
+	local name = vim.fn.fnamemodify(file, ":t:r")
+	local config = dofile(file)
+	if config then
+		vim.lsp.enable(name, config)
+	end
+end
